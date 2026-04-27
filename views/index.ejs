@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickNotes</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="app-title">QuickNotes</h1>
+
+    <form action="/add" method="POST" id="note-form">
+      <input type="text" name="title" id="note-title" placeholder="Note title" required />
+      <textarea name="content" id="note-content" placeholder="Write your note..." required></textarea>
+      <button type="submit" id="add-btn">Add Note</button>
+    </form>
+
+    <div id="notes-list">
+      <% notes.forEach(note => { %>
+        <div class="note">
+          <h3><%= note.title %></h3>
+          <p><%= note.content %></p>
+          <form action="/delete/<%= note.id %>" method="POST">
+            <button class="delete-btn">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
